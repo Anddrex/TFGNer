@@ -1,0 +1,111 @@
+{
+   "name":"DaSiamRPN",
+   "description":[
+      {
+         "originalHeader":"Introduction",
+         "excerpt":"**SiamRPN** formulates the task of visual tracking as a task of localization and identification simultaneously, initially described in an [CVPR2018 spotlight paper](http://openaccess.thecvf.com/content_cvpr_2018/papers/Li_High_Performance_Visual_CVPR_2018_paper.pdf). (Slides at [CVPR 2018 Spotlight](https://drive.google.com/open?id=1OGIOUqANvYfZjRoQfpiDqhPQtOvPCpdq))\n\n**DaSiamRPN** improves the performances of SiamRPN by (1) introducing an effective sampling strategy to control the imbalanced sample distribution, (2) designing a novel distractor-aware module to perform incremental learning, (3) making a long-term tracking extension. [ECCV2018](https://arxiv.org/pdf/1808.06048.pdf). (Slides at [VOT-18 Real-time challenge winners talk](https://drive.google.com/open?id=1dsEI2uYHDfELK0CW2xgv7R4QdCs6lwfr))\n\n<div align=\"center\">\n  <img src=\"votresult.png\" width=\"700px\" />\n</div>\n",
+         "confidence":[
+            1
+         ],
+         "technique":"Header extraction",
+         "parentHeader":"DaSiamRPN"
+      }
+   ],
+   "acknowledgement":[
+      
+   ],
+   "installation":[
+      {
+         "originalHeader":"Detailed steps to install the prerequisites",
+         "excerpt":"- install pytorch, numpy, opencv following the instructions in the `run_install.sh`. Please do **not** use conda to install.\n- you can alternatively modify `/PATH/TO/CODE/FOLDER/` in `tracker_SiamRPN.m` \n  If the tracker is ready, you will see the tracking results. (EAO: 0.3827)\n\n",
+         "confidence":[
+            1
+         ],
+         "technique":"Header extraction",
+         "parentHeader":"DaSiamRPN"
+      }
+   ],
+     "requirement": [
+    {
+      "originalHeader": "Prerequisites",
+      "excerpt": "CPU: Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz\nGPU: NVIDIA GTX1060\n\n- python2.7\n- pytorch == 0.3.1\n- numpy\n- opencv\n\n",
+      "confidence": [
+        1
+      ],
+      "technique": "Header extraction",
+      "parentHeader": "DaSiamRPN",
+      "ner":{
+          "technique": "NER4Soft",
+          "version": "1.4.5",
+           "entities":[
+             {
+               "id": 1,
+               "name": "python",
+               "type": "ProgrammingLanguage",
+               "start": "NUM",
+               "end": "NUM"
+             },
+{
+               "id": 2,
+               "name": "Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz",
+               "type": "Hardware",
+               "start": "NUM",
+               "end": "NUM"
+             },
+             {
+               "id": 3,
+               "name": "2.7",
+               "type": "Version",
+               "start": "NUM",
+               "end": "NUM"
+             },
+             {
+               "id": 4,
+               "name": "NVIDIA GTX1060",
+               "type": "Hardware",
+               "start": "NUM",
+               "end": "NUM"
+             },
+			{
+               "id": 5,
+               "name": "pytorch",
+               "type": "SoftwareDependency",
+               "start": "NUM",
+               "end": "NUM"
+             },
+        {
+               "id": 6,
+               "name": "0.3.1",
+               "type": "Version",
+               "start": "NUM",
+               "end": "NUM"
+             },
+{
+               "id": 7,
+               "name": "opencv",
+               "type": "SoftwareDependency",
+               "start": "NUM",
+               "end": "NUM"
+             },
+{
+               "id": 8,
+               "name": "numpy",
+               "type": "SoftwareDependency",
+               "start": "NUM",
+               "end": "NUM"
+             }
+          ]
+      }
+    }        
+  ],
+	"usage":[
+      {
+         "originalHeader":"Demo and Test on OTB2015",
+         "excerpt":"<div align=\"center\">\n  <img src=\"code/data/bag.gif\" width=\"400px\" />\n</div>\n\n- To reproduce the reuslts on paper, the pretrained model can be downloaded from [Google Drive](https://drive.google.com/open?id=1BtIkp5pB6aqePQGlMb2_Z7bfPy6XEj6H): `SiamRPNOTB.model`. <br />\n:zap: :zap: This model is the **fastest** (~200fps) Siamese Tracker with AUC of 0.655 on OTB2015. :zap: :zap: \n\n- You must download OTB2015 dataset (download [script](code/data/get_otb_data.sh)) at first.\n\nA simple test example.\n\nCODE_BLOCK\n\nIf you want to test the performance on OTB2015, please using the follwing command.\n\nCODE_BLOCK\n\n",
+         "confidence":[
+            1
+         ],
+         "technique":"Header extraction"
+      }
+   ]
+}
