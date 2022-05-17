@@ -8,3 +8,8 @@ be used for testing.
 To run the code just use the command in the terminal:
 
 python3 relation_extractionV1.py
+
+To run TestPyUnit.py use command:
+
+python3 TestPyUnit.py
+
