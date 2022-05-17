@@ -166,6 +166,8 @@
 #     print(name2)
 
 import json
+
+from numpy import vectorize
 ## version 1.2.0
 
 # This global variable added_info will have the extra information extracted from the relationships section of ner, as well
@@ -311,8 +313,8 @@ def newInfo(entities,relationships):
     # print(added_info)
     
 
-def makeRelations(name,nerEntities):
-    if type(name) != str or type(nerEntities) != list:
+def makeRelations(nerEntities):
+    if type(nerEntities) != list:
         print("Error: pasar una sección de ner válida")
         return None
     
@@ -397,7 +399,9 @@ entities = [{'end': 153,
    'start': 379,
    'type': 'Application'}]
 
-
-dict_relations = makeRelations(name, entities)
-print(dict_relations)
-print(added_info)
+a = {}
+if not a:
+    print("nada")
+# dict_relations = makeRelations(name, entities)
+# print(dict_relations)
+# print(added_info)

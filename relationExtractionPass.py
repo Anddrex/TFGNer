@@ -15,7 +15,7 @@ added_info = {"technique":"relation_extraction", "version":"1.3.0"}
 # parameters updating our global variable
 
 def newInfo(entities,relationships):
-    if (type(entities) != list or type(relationships) != dict) or (not bool(relationships) or not entities):
+    if (type(entities) != list or type(relationships) != dict) or (not relationships or not entities):
         print("Error: faltan entidades y/o relaciones")
         return None
     global added_info
@@ -101,6 +101,7 @@ def addVersions (entities,versions):
                             software["version"] = list(newVersions)
                 
                 if entity["type"] == "ProgrammingLanguage":
+                    print("LLEGA AQUI")
                     for language in added_info["supportedLanguages"]:
                         if entity["name"] == language["name"]:
                             if  not "version" in language: 
@@ -129,19 +130,19 @@ def addVersions (entities,versions):
                             
             
     
-    #print(added_info["softwareRequirements"])                        
-    #print(added_info["supportedLanguages"])
+    print(added_info["softwareRequirements"])                        
+    print(added_info["supportedLanguages"])
     #print(added_info["supportedOS"])
     #print(added_info["usagePlatforms"])
 
-def makeRelations(section):
-    if type(section) != list or not section:
+def makeRelations(nerEntities):
+    if type(nerEntities) != list or not nerEntities:
         print("Error: pasar una sección de ner válida")
         return None
     
     #First we initialize the relationship
     relationship_dict = {"relationships":[]}
-    nerEntities = section[0]["ner"]["entities"]  #This line is deleted in the joint version because we will receive it directly from our service
+    #nerEntities = section[0]["ner"]["entities"]  #This line is deleted in the joint version because we will receive it directly from our service
     idRel = 1 #Needed for our creation of relationship ids (FORMAT r + idREl)
     
     #In this loop when we find entities corresponding to programing, languages hardware and software. The function
@@ -191,45 +192,18 @@ def makeRelations(section):
     
     # The following code is for testing our version extraction            
     ##########################################################            
-    relationship_dict["relationships"].append({ 
-                "id": "r" + str(idRel),
-                "subject": 2,
-                "predicate": "versionOf",
-                "object": 1
-            })
-    relationship_dict["relationships"].append({ 
-                "id": "r" + str((idRel+1)),
-                "subject": 6,
-                "predicate": "versionOf",
-                "object": 5 
-            })
+    # relationship_dict["relationships"].append({ 
+                # "id": "r" + str(idRel),
+                # "subject": 2,
+                # "predicate": "versionOf",
+                # "object": 3
+            # })
+    # relationship_dict["relationships"].append({ 
+                # "id": "r" + str((idRel+1)),
+                # "subject": 6,
+                # "predicate": "versionOf",
+                # "object": 5 
+            # })
     #########################################################        
-    #newInfo(nerEntities,relationship_dict) # here we call newInfo since it needs the newly created dictionary to update itself                      
+    newInfo(nerEntities,relationship_dict) # here we call newInfo since it needs the newly created dictionary to update itself                      
     return relationship_dict         
-    
-
-
-#In proccesFich() we will receive a filename and from that we will create a new dictionary that will be added
-#to the corresponding section in our new JSON 
-
-def proccessFich(fileName):
-    global added_info
-    fich_input = open(fileName,"r")
-    dict_input = json.loads(fich_input.read())
-    fich_input.close()
-    section = dict_input.get("requirement")
-    relationships = makeRelations(section)
-    entities = section[0]["ner"]["entities"]
-    newInfo(entities,relationships)
-    dict_input["requirement"][0]["ner"].update(relationships)
-    dict_input["relation_extraction"] = [added_info] 
-    return dict_input
-
-#Here is where we will call proccesfich and create our new file with the aforemetioned dictionary
-
-dict_proccessed = proccessFich("data.json")
-nuevofichero = open("proData.json","w")
-json1 = json.dumps(dict_proccessed,indent=4)
-nuevofichero.write(json1)
-nuevofichero.close()
-#print(leer.read())
